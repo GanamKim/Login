@@ -1,0 +1,65 @@
+package com.phoenix.login;
+
+import java.util.UUID;
+
+
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
+
+//Enum으로 Status를 구분지어서 diary와 client(member)를 둘 다 텍스트 파일로 불러올수가 있어요
+//그래서 여기에서 캘린ㄷ 인풋부분으 만들려 노력중에 있습니다ㅠㅠ 감안하시고 봐주세요.
+
+public class LoginMain {
+	
+	//Tab상황 구분하기 위해 Enum 선
+	public enum Status{
+		DIARY,CLIENT	
+	};
+	
+	//현 tab 상황 저장 //기본값 memo
+	public static Status NowStatus = Status.DIARY; 
+	public static FindId findId = new FindId();
+	public static FindPw findpw = new FindPw();
+	public static Join join = new Join();
+	public static Login login = new Login();
+	
+	//선택 관련 매니저
+	//public static ChoiceMain choicemain = new ChoiceMain();
+	
+	 public static boolean bLogInStatus = false;
+	
+	
+	public static void ShowMessage(String str) {
+		JOptionPane.showMessageDialog(null, str);
+	}
+	
+	public static String SetCodeNumbering() {
+		String str="";
+		if(LoginMain.NowStatus == Status.DIARY)
+			str = "D";
+		else if(LoginMain.NowStatus == Status.CLIENT)
+			str = "C";
+		str+=UUID.randomUUID().toString().replaceFirst("-", "").substring(0,6);
+		return str;
+		//총 길이가 32자리가 나오기 때문에 길이 지정
+		//내가 디폴트로 잡은 값에서 추가로 6자리가랜덤으로 받아져 작성됨. 
+	}
+	
+	
+	//Diary를 쓰고 싶다면 이 부분을 살려야 함. 
+	
+//	public static Vector<?> ReturnVec(){
+//		switch(LoginMain.NowStatus) {
+//		case DIARY:
+//			return Diary.DiaryVec;
+//		case CLIENT:
+//			return Member.MemberVec;
+//		default:
+//			return Diary.DiaryVec;
+//		
+//		}
+//	}
+	
+	
+}
