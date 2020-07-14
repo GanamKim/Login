@@ -29,34 +29,28 @@ public class Login extends JFrame{
 	
 	public Login() {
 		
-    //프레임 내용 
 		setTitle("나를 알아가는 시간, ON n OFF");
 		setBounds(100,100,1024,720);
 		setLayout(null);
 		
-    //배경 이미지라벨을 붙이 메인 판넬 
 		JPanel mainPan = new JPanel();
 		mainPan.setBounds(0,0,1024,720);
 		mainPan.setLayout(null);
 		
-    //배경 이미지가 들어간 라벨 
 		ImageIcon image = new ImageIcon("images/onandoff.png");
 		JLabel lblImage = new JLabel(image);
 		lblImage.setBounds(0,0,1024,720);
 		mainPan.add(lblImage);
 		
-    //버튼, 입력창들이 들어갈 판넬 
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(null);
 		contentPane.setBackground(new Color(0.0f,0.0f,0.0f,0.0f));
 		contentPane.setBounds(243,370,500,160);
 		
-    //ID 라벨 
 		JLabel lblId = new JLabel("ID");
 		lblId.setBounds(57,34,47,15);
 		contentPane.add(lblId);
 		
-    //ID 입력 텍스트필드 
 		JTextField txtId = new JTextField();
 		txtId.setText("");
 		txtId.setBounds(90,27,167,25);
@@ -65,12 +59,11 @@ public class Login extends JFrame{
 		txtId.setColumns(10);
 		contentPane.add(txtId);
 		
-    //PW 라벨 	
+	
 		JLabel lblPw = new JLabel("PW");
 		lblPw.setBounds(57,64,47,15);
 		contentPane.add(lblPw);
 		
-    //PW 입력 패스워드 필ㄷ 
 		txtPw = new JPasswordField();
 		txtPw.setText("");
 		txtPw.setBounds(90,61,167,25);
@@ -78,7 +71,6 @@ public class Login extends JFrame{
 		contentPane.add(txtPw);
 		txtPw.setColumns(10);
 		
-    //로그인 버튼과 액션 리스너
 		JButton btnNewButton_Login = new JButton("로그인");
 		btnNewButton_Login.addActionListener(new ActionListener() {
 
@@ -98,16 +90,16 @@ public class Login extends JFrame{
 				//LoginMain.choicemain.Login();
 			}
 			
+			
 			//이곳에서 새로운 화면 구현 
-      
 			}
 		});
 		btnNewButton_Login.setBorder(border);
+		btnNewButton_Login.setFocusPainted(false);
 		btnNewButton_Login.setBounds(274,27,99,54);
 		contentPane.add(btnNewButton_Login);
 		
-    
-		//회원가 버튼과 액션리스너
+		
 		JButton btnNewButton_Sign = new JButton("회원가입");
 		btnNewButton_Sign.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -115,10 +107,10 @@ public class Login extends JFrame{
 			}
 		});
 		btnNewButton_Sign.setBorder(border);
+		btnNewButton_Sign.setFocusPainted(false);
 		btnNewButton_Sign.setBounds(275,99,99,30);
 		contentPane.add(btnNewButton_Sign);
 		
-    //아이디찾기 버튼고 액션리스너 
 		JButton button_FindID = new JButton("아이디 찾기");
 		button_FindID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,10 +118,11 @@ public class Login extends JFrame{
 			}
 		});
 		button_FindID.setBorder(border);
+		button_FindID.setFocusPainted(false);
 		button_FindID.setBounds(54,99,102,30);
 		contentPane.add(button_FindID);
 		
-		//비밀번호 찾기와 액션리스너
+		
 		JButton button_Findpw = new JButton("PW찾기");
 		button_Findpw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,22 +130,26 @@ public class Login extends JFrame{
 			}
 		});
 		button_Findpw.setBorder(border);
+		button_Findpw.setFocusPainted(false);
 		button_Findpw.setBounds(166,99,99,30);
 		contentPane.add(button_Findpw);
 		
-    //게스트 입장과 액션리슨 
 		JButton button = new JButton("게스트 입장");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginMain.login.setVisible(false);
-				//여기에 연결화면 구성 
+				//new MainView();
 			}
 		});
 		button.setBorder(border);
+		button.setFocusPainted(false);
 		button.setBounds(388,26,102,84);
 		contentPane.add(button);
 		
 		Reset(txtId, txtPw);
+		
+		
+		
 		
 		add(mainPan);
 		add(contentPane);
@@ -171,7 +168,6 @@ public class Login extends JFrame{
 		txtPw.setText(null);
 	}
 	
-  //간일 로그인 화면만 출력하려고 만드 메인 
 	public static void main(String[] args) {
 		new Login();
 	}
