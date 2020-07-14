@@ -1,0 +1,25 @@
+package com.phoenix.login;
+
+//멤버 클래승 있느 MemberVec 이라는 벡터에서 값들으 가져와서 비교한다. 
+public class LogIn_Chk {
+	
+	public LogIn_Chk() {
+		
+	}
+	
+	public void LogInList_Chk() {
+		
+	}
+	
+	public boolean LogInList_Chk(String sId, String sPw) {
+		for(int i=0;i<Member.MemberVec.size();i++) {
+			if(Member.MemberVec.get(i).getSid().equals(sId) &&
+					Member.MemberVec.get(i).getSpw().equals(sPw)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+
+}
