@@ -1,0 +1,118 @@
+package com.phoenix.login;
+
+
+import java.io.BufferedReader;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+import java.util.UUID;
+
+public class FileIO {
+   static String StringForSave = "";
+
+   public FileIO() { // 생성자
+
+   }
+
+   public static void SetFileInputList(String sfilename) { // 파일 이름을 받아 그 해당하는 리스트
+      BufferedReader read = null;
+      String s = null;
+  //    Diary diary = null;
+      Member member = null;
+      try {
+         read = new BufferedReader(new FileReader(sfilename));
+         try {
+            while ((s = read.readLine()) != null) {
+               StringTokenizer row = new StringTokenizer(s, ",");
+               while (row.hasMoreTokens()) // 리턴할 다음 토큰이 있는지 여부 확인
+               {
+                  Object tempobj[] = new Object[6];
+                  for (int i = 0; i < tempobj.length; i++) { // 책과 멤버 모두 열이 6개
+                     tempobj[i] = row.nextToken(); // 배열에 각 값을 담기
+                  }
+//                  if (sfilename.equals("Diary.txt")) {
+//                     diary = new Diary(tempobj[0].toString(), tempobj[1].toString(), tempobj[2].toString(),
+//                           tempobj[3].toString(), tempobj[4].toString(), tempobj[5].toString());
+//                     Diary.DiaryVec.addElement(diary);
+//
+//                  } else 
+                	  if (sfilename.equals("Member.txt")) {
+                     member = new Member(tempobj[0].toString(), tempobj[1].toString(), tempobj[2].toString(),
+                           tempobj[3].toString(), tempobj[4].toString(), tempobj[5].toString());
+                     Member.MemberVec.addElement(member);
+                  }
+               }
+            }
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+      } catch (
+
+      FileNotFoundException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         try {
+            read.close();
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+      }
+   }
+
+   public static void SaveToFile(String sfilename) {
+      Object tempObject[] = new Object[6];
+      StringForSave = "";
+//      if (sfilename.equals("Diary.txt")) {
+//         for (int i = 0; i < Diary.DiaryVec.size(); i++) {
+//            tempObject[0] = Diary.DiaryVec.elementAt(i).getSdiaryYear();
+//            tempObject[1] = Diary.DiaryVec.elementAt(i).getSdiaryMonth();
+//            tempObject[2] = Diary.DiaryVec.elementAt(i).getSdiaryDay();
+//            tempObject[3] = Diary.DiaryVec.elementAt(i).getSdiaryText();
+//            tempObject[4] = Diary.DiaryVec.elementAt(i).getSdiaryCondition();
+//            tempObject[5] = Diary.DiaryVec.elementAt(i).getSdiaryInterest();
+//            makeString(tempObject);
+//
+//         }
+      //} else 
+    	  if (sfilename.equals("Member.txt")) {
+         for (int i = 0; i < Member.MemberVec.size(); i++) {
+            tempObject[0] = Member.MemberVec.elementAt(i).getCustomernum();
+            tempObject[1] = Member.MemberVec.elementAt(i).getSid();
+            tempObject[2] = Member.MemberVec.elementAt(i).getSpw();
+            tempObject[3] = Member.MemberVec.elementAt(i).getName();
+            tempObject[4] = Member.MemberVec.elementAt(i).getBirth();
+
+            makeString(tempObject);
+         }
+      }
+      BufferedWriter writer = null;
+      try {
+         writer = new BufferedWriter(new FileWriter(sfilename));
+         writer.write(StringForSave);
+         StringForSave = ""; // 초기화
+      } catch (IOException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         try {
+            writer.close();
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+      }
+   }
+
+   public static void makeString(Object row[]) { // 구분자 생성
+      for (int i = 0; i < 6 - 1; i++)
+         StringForSave = StringForSave + row[i] + ",";
+      StringForSave = StringForSave + row[6 - 1] + "\n";
+   }
+}
